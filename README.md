@@ -5,41 +5,41 @@
 
 Pre-requisite installation
 
-1)Updating Ubuntu and Installing Ansible  
+### 1)Updating Ubuntu and Installing Ansible  
 	
 	#sudo apt update
 	#sudo apt install ansible
 
-2)Creating an admin for ansible (Master and Slave)
+### 2)Creating an admin for ansible (Master and Slave)
 
 	#useradd admin
 	#passwd xxxx
 
-3)Giving sudo access to the Ansible Admin (Master and Slave)
+### 3)Giving sudo access to the Ansible Admin (Master and Slave)
 
 	#visudo
 
-4)Setting PasswordAuthentication Yes 
+### 4)Setting PasswordAuthentication Yes 
 
 	#vi /etc/ssh/sshd_config
 
-5) Restarting the service sshd for the changes to take effect
+### 5) Restarting the service sshd for the changes to take effect
 ```	
     #service sshd reload 
 ```
-6)Generating shh-key in the master 
+### 6)Generating shh-key in the master 
 
 	#ssh-keygen
 
-7) Copying the generated public key into the slave
+### 7) Copying the generated public key into the slave
 ```
 	#ssh-copy-id <Slave_IP_Address>(Slave's private ip address)
 ```
-8) Adding slave to master 
+### 8) Adding slave to master 
 ```	
 	#vi /etc/ansible/hosts
 ```
-9)Testing the configuration with the command
+### 9)Testing the configuration with the command
 	
 	#ansible all -m ping
 
@@ -47,7 +47,7 @@ Pre-requisite installation
 
 ##					*** Launching Webserver On Slaves ***
 
-1) Writing a playbook 
+### 1) Writing a playbook 
 
 Name of playbook - apache.yml
 
@@ -69,12 +69,12 @@ Name of playbook - apache.yml
 		enabled: yes
 ```
  
-2) Executing the playbook
+### 2) Executing the playbook
 ```
 	#ansible-playbook apache.yml 	
 ```
 
-3) Testing if it works on browser
+### 3) Testing if it works on browser
 
 	http://<slave_IP_Address>
 
@@ -86,7 +86,7 @@ Name of playbook - apache.yml
 ##						***Creating a Vault***
 
 
-1) Creating a safe encrypted file
+### 1) Creating a safe encrypted file
 ```
 	#ansible-vault create vault.yml
 ```
@@ -95,7 +95,7 @@ Name of playbook - apache.yml
 	--the file created will be encrypted 
 
 
-2) Editing the file 
+### 2) Editing the file 
 ```	
 	#ansible-vault edit vault.yml
 ```
@@ -104,7 +104,7 @@ Name of playbook - apache.yml
 	  Declaring the variable file in the ansible playbook -- varfiles:
 									-vault.yml
 
-3) Executing the playbook
+### 3) Executing the playbook
 ```
 	#ansible-playbook -i hosts playbook_name.yml --ask-vault-pass	
 ```
