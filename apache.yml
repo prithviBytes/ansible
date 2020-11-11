@@ -1,0 +1,15 @@
+- hosts: <Slave>
+  tasks:
+	
+	- name: Installing Apache Server
+	  become: yes
+	  apt: name=apache2 
+	       update_cache=yes
+	       state=latest
+
+	- name: Starting Server
+	  become: yes
+	  service:
+		name: apache2
+		state: started
+		enabled: yes
